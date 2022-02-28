@@ -1,12 +1,15 @@
 <template>
   <nav class="navbar navbar-primary bg-primary text-secondary">
     <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">{{ title }}</span>
+      <h3>
+        <span class="navbar-brand">{{ title }}</span>
+      </h3>
     </div>
   </nav>
 </template>
 
 <script lang="ts">
+
 import { defineComponent } from 'vue';
 
 export default defineComponent({

@@ -4,7 +4,7 @@
       <img
         :src="img"
         class="card-img-top"
-        alt="..."
+        :alt="name"
       >
       <div class="card-body">
         <h5 class="card-title">{{ name }}</h5>

@@ -1,20 +1,18 @@
 <template>
-  <!-- Navbar -->
-  <nav class="navbar navbar-primary ">
+  <nav class="navbar navbar-primary bg-primary text-secondary">
     <div class="container-fluid">
-      <h3>
-        <span class="navbar-brand text-white">
-          Pokedex
-        </span>
-      </h3>
+      <span class="navbar-brand mb-0 h1">{{ title }}</span>
     </div>
-  </nav> <!-- END Navbar -->
+  </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'NavbarComponent'
+  name: 'NavbarComponent',
+  props: {
+    title: String
+  }
 });
 </script>

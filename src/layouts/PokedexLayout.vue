@@ -1,6 +1,8 @@
 <template>
-  <NavbarComponent />
-  <h1>Pokedex Layout</h1>
+  <NavbarComponent title="Vue Pokedex" />
+  <div class="container mt-3">
+    <h1>Pokedex</h1>
+  </div>
 </template>
 
 <script lang="ts">

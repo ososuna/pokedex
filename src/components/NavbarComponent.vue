@@ -1,6 +1,6 @@
 <template>
   <!-- Navbar -->
-  <nav class="navbar navbar-primary">
+  <nav class="navbar navbar-primary ">
     <div class="container-fluid">
       <h3>
         <span class="navbar-brand text-white">

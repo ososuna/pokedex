@@ -1,17 +1,17 @@
 <template>
-  <Navbar />
+  <NavbarComponent />
   <h1>Pokedex Layout</h1>
 </template>
 
 <script lang="ts">
 
 import { defineComponent } from 'vue';
-import Navbar from '@/components/Navbar.vue';
+import NavbarComponent from '@/components/NavbarComponent.vue';
 
 export default defineComponent({
-  name: 'PokedexLayout',
+  name: 'PokedexLayout',  
   components: {
-    Navbar
+    NavbarComponent
   }
 });
 

@@ -11,7 +11,15 @@ const usePokemon = () => {
       }
     });
 
-    return data.results;
+    const pokemons = data.results.map((result: { name: string; url: string; }, index: number) => {
+      return {
+        name: result.name,
+        url: result.url,
+        img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ index + 1 }.png`
+      }
+    });
+
+    return pokemons;
   
   }
 

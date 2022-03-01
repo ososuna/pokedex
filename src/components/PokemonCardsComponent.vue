@@ -2,8 +2,10 @@
   <div class="container">
     <div class="row d-flex justify-content-center">
       <PokemonCardComponent
-        name="Oshawott"
-        img="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/501.png"  
+        v-for="pokemon in pokemons"
+        :key="pokemon.name"
+        :name="pokemon.name"
+        :img="pokemon.img"
       />
     </div>
   </div>
@@ -11,7 +13,7 @@
 
 <script lang="ts">
 
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 import PokemonCardComponent from '@/components/PokemonCardComponent.vue';
 import usePokemon from '@/hooks/usePokemon';
@@ -22,15 +24,21 @@ export default defineComponent({
     PokemonCardComponent
   },
   setup() {
+
     const { getPokemon } = usePokemon();
-    
+    const pokemons = ref([]);
+
     const loadPokemons = async () => {
-      const pokemons = await getPokemon();
-      console.log( pokemons );
+      pokemons.value = await getPokemon();
+      console.log(pokemons.value);
     }
 
     loadPokemons();
 
+    return {
+      pokemons
+    }
+    
   }
 });
 </script>

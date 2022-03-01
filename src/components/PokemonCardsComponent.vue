@@ -13,32 +13,17 @@
 
 <script lang="ts">
 
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 
 import PokemonCardComponent from '@/components/PokemonCardComponent.vue';
-import usePokemon from '@/hooks/usePokemon';
 
 export default defineComponent({
   name: 'PokemonCardsComponent',
+  props: {
+    pokemons: Array
+  },
   components: {
     PokemonCardComponent
-  },
-  setup() {
-
-    const { getPokemon } = usePokemon();
-    const pokemons = ref([]);
-
-    const loadPokemons = async () => {
-      pokemons.value = await getPokemon();
-      console.log(pokemons.value);
-    }
-
-    loadPokemons();
-
-    return {
-      pokemons
-    }
-    
   }
 });
 </script>

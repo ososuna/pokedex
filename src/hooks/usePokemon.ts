@@ -1,25 +1,27 @@
 
 import pokeApi from '@/api/pokeApi';
+import Pokemon from '../models/Pokemon';
 
 const usePokemon = () => {
   
-  const getPokemon = async() => {
+  const getPokemon = async( offset = 0 ) => {
 
     const { data } = await pokeApi.get('', {
       params: {
-        limit: 120
+        limit: 120,
+        offset
       }
     });
 
-    const pokemons = data.results.map((result: { name: string; url: string; }, index: number) => {
+    let index = offset+1;
+
+    return data.results.map((result: { name: string; url: string; }): Pokemon => {
       return {
         name: result.name,
         url: result.url,
-        img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ index + 1 }.png`
+        img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ index++ }.png`
       }
     });
-
-    return pokemons;
   
   }
 

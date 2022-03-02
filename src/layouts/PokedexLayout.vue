@@ -4,7 +4,7 @@
     <h1>Pokedex</h1>
   </div>
   <PokemonCardsComponent :pokemons="pokemons" />
-  <SpinnerComponent />
+  <SpinnerComponent v-if="loadingPokemon" />
 </template>
 
 <script lang="ts">
@@ -17,6 +17,8 @@ import SpinnerComponent from '@/components/SpinnerComponent.vue';
 
 import usePokemon from '@/hooks/usePokemon';
 
+import Pokemon from '../models/Pokemon';
+
 export default defineComponent({
   name: 'PokedexLayout',  
   components: {
@@ -27,22 +29,39 @@ export default defineComponent({
   setup() {
 
     const { getPokemon } = usePokemon();
-    const pokemons = ref([]);
+    const loadingPokemon = ref(false);
+    const pokemons = ref<Pokemon[]>([]);
 
     const loadPokemons = async () => {
       pokemons.value = await getPokemon();
     }
     
-    const loadMorePokemon = () => {
-      window.addEventListener('scroll', () => {
+    const loadMorePokemon = async() => {
+      window.addEventListener('scroll', async () => {
         const {
-            scrollTop,
-            scrollHeight,
-            clientHeight
+          scrollTop,
+          scrollHeight,
+          clientHeight
         } = document.documentElement;
 
-        if ( scrollTop + clientHeight >= scrollHeight - 5 ) {
-          console.log('Loading more...');
+        if ( scrollTop + clientHeight >= scrollHeight - 1 ) {
+          
+          loadingPokemon.value = true;
+          
+          if ( loadingPokemon.value ) {
+  
+            const morePokemons = await getPokemon( pokemons.value.length );
+            
+            loadingPokemon.value = false;
+            
+            pokemons.value = [
+              ...pokemons.value,
+              ...morePokemons
+            ]
+
+            console.log('loaded');
+            
+          }
         }
       });
     }
@@ -53,6 +72,7 @@ export default defineComponent({
     })
 
     return {
+      loadingPokemon,
       pokemons
     }
 

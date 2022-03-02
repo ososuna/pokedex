@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex justify-content-center mt-2 mb-2">
-    <div class="spinner-border text-secondary">
+    <div class="spinner-border">
     </div>
   </div>
 </template>

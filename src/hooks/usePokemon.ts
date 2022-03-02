@@ -7,7 +7,7 @@ const usePokemon = () => {
 
     const { data } = await pokeApi.get('', {
       params: {
-        limit: 100
+        limit: 120
       }
     });
 

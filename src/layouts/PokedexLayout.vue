@@ -4,6 +4,7 @@
     <h1>Pokedex</h1>
   </div>
   <PokemonCardsComponent :pokemons="pokemons" />
+  <SpinnerComponent />
 </template>
 
 <script lang="ts">
@@ -12,13 +13,16 @@ import { defineComponent, onMounted, ref } from 'vue';
 
 import NavbarComponent from '@/components/NavbarComponent.vue';
 import PokemonCardsComponent from '@/components/PokemonCardsComponent.vue';
+import SpinnerComponent from '@/components/SpinnerComponent.vue';
+
 import usePokemon from '@/hooks/usePokemon';
 
 export default defineComponent({
   name: 'PokedexLayout',  
   components: {
     NavbarComponent,
-    PokemonCardsComponent
+    PokemonCardsComponent,
+    SpinnerComponent
   },
   setup() {
 

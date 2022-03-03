@@ -46,18 +46,18 @@ export default defineComponent({
 
         if ( scrollTop + clientHeight >= scrollHeight - 1 ) {
           
-          loadingPokemon.value = true;
-          
-          if ( loadingPokemon.value ) {
-  
-            const morePokemons = await getPokemon( pokemons.value.length );
+          if ( !loadingPokemon.value ) {
             
-            loadingPokemon.value = false;
+            loadingPokemon.value = true;
+
+            const morePokemons = await getPokemon( pokemons.value.length );
             
             pokemons.value = [
               ...pokemons.value,
               ...morePokemons
             ]
+            
+            loadingPokemon.value = false;
 
             console.log('loaded');
             

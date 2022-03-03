@@ -1,7 +1,7 @@
 <template>
   <NavbarComponent title="Vue Pokedex" />
   <div class="container mt-4 mb-5">
-    <h2>Pokedex</h2>
+    <img src="https://fontmeme.com/permalink/220303/53e6f4184809d9dbe6e98062a0948a4e.png" alt="vue-pokedex" style="width:20rem" />
   </div>
   <PokemonCardsComponent :pokemons="pokemons" />
   <SpinnerComponent v-if="loadingPokemon" />

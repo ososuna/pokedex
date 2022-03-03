@@ -28,7 +28,8 @@ export default defineComponent({
   },
   setup() {
 
-    const { getPokemon } = usePokemon();
+    const { allPokemonsLoaded, getPokemon } = usePokemon();
+
     const loadingPokemon = ref(false);
     const pokemons = ref<Pokemon[]>([]);
 
@@ -37,7 +38,7 @@ export default defineComponent({
     }
     
     const loadMorePokemon = () => {
-      
+
       window.onscroll = async () => {
         
         const {
@@ -46,7 +47,7 @@ export default defineComponent({
           clientHeight
         } = document.documentElement;
 
-        if ( scrollTop + clientHeight >= scrollHeight - 1 ) {
+        if ( (scrollTop + clientHeight >= scrollHeight - 1) && !allPokemonsLoaded.value ) {
           
           if ( !loadingPokemon.value ) {
             
@@ -58,11 +59,10 @@ export default defineComponent({
               ...pokemons.value,
               ...morePokemons
             ]
-            
             loadingPokemon.value = false;            
           }
         }
-      };
+      }
     }
 
     onMounted(() => {

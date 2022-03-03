@@ -37,7 +37,9 @@ export default defineComponent({
     }
     
     const loadMorePokemon = async() => {
-      window.addEventListener('scroll', async () => {
+      
+      window.onscroll = async () => {
+        
         const {
           scrollTop,
           scrollHeight,
@@ -57,13 +59,10 @@ export default defineComponent({
               ...morePokemons
             ]
             
-            loadingPokemon.value = false;
-
-            console.log('loaded');
-            
+            loadingPokemon.value = false;            
           }
         }
-      });
+      };
     }
 
     onMounted(() => {

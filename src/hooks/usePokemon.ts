@@ -22,12 +22,12 @@ const usePokemon = () => {
 
     pokemons = data.results.map((result: { name: string; url: string; }): Pokemon => {
       return {
-        id: index++,
+        id: index,
         name: result.name,
         url: result.url,
         img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ index++ }.png`
       }      
-    });
+    });    
 
     if ( index > 899 ) {
       allPokemonsLoaded.value = true;

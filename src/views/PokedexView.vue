@@ -5,6 +5,7 @@
   </div>
   <PokemonCardsComponent :pokemons="pokemons" />
   <SpinnerComponent v-if="loadingPokemon" />
+  <FooterComponent v-if="allPokemonsLoaded" />
 </template>
 
 <script lang="ts">
@@ -14,6 +15,7 @@ import { defineComponent, onMounted, ref } from 'vue';
 import NavbarComponent from '@/components/NavbarComponent.vue';
 import PokemonCardsComponent from '@/components/PokemonCardsComponent.vue';
 import SpinnerComponent from '@/components/SpinnerComponent.vue';
+import FooterComponent from '@/components/FooterComponent.vue';
 
 import usePokemon from '@/hooks/usePokemon';
 
@@ -24,7 +26,8 @@ export default defineComponent({
   components: {
     NavbarComponent,
     PokemonCardsComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    FooterComponent
   },
   setup() {
 
@@ -71,6 +74,7 @@ export default defineComponent({
     })
 
     return {
+      allPokemonsLoaded,
       loadingPokemon,
       pokemons
     }

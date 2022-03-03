@@ -1,7 +1,7 @@
 <template>
   <NavbarComponent title="Vue Pokedex" />
   <div class="container mt-4 mb-5">
-    <h1>Pokedex</h1>
+    <h2>Pokedex</h2>
   </div>
   <PokemonCardsComponent :pokemons="pokemons" />
   <SpinnerComponent v-if="loadingPokemon" />
@@ -17,10 +17,10 @@ import SpinnerComponent from '@/components/SpinnerComponent.vue';
 
 import usePokemon from '@/hooks/usePokemon';
 
-import Pokemon from '../models/Pokemon';
+import Pokemon from '@/models/Pokemon';
 
 export default defineComponent({
-  name: 'PokedexLayout',  
+  name: 'PokedexView',  
   components: {
     NavbarComponent,
     PokemonCardsComponent,
@@ -54,7 +54,7 @@ export default defineComponent({
             loadingPokemon.value = true;
 
             const morePokemons = await getPokemon( pokemons.value.length );
-            
+
             pokemons.value = [
               ...pokemons.value,
               ...morePokemons

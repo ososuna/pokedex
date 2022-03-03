@@ -36,7 +36,7 @@ export default defineComponent({
       pokemons.value = await getPokemon();
     }
     
-    const loadMorePokemon = async() => {
+    const loadMorePokemon = () => {
       
       window.onscroll = async () => {
         

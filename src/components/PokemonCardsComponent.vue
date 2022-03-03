@@ -1,14 +1,10 @@
-<template>
-  <div class="container">
-    <div class="row d-flex justify-content-center">
-      <PokemonCardComponent
-        v-for="pokemon in pokemons"
-        :key="pokemon.name"
-        :name="pokemon.name"
-        :img="pokemon.img"
-      />
-    </div>
-  </div>
+<template>      
+  <PokemonCardComponent
+    v-for="pokemon in pokemons"
+    :key="pokemon.name"
+    :name="pokemon.name"
+    :img="pokemon.img"
+  />
 </template>
 
 <script lang="ts">

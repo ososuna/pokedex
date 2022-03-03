@@ -1,21 +1,35 @@
 <template>
+  
   <NavbarComponent title="Vue Pokedex" />
+
   <div class="container mt-4 mb-5">
     <img src="https://fontmeme.com/permalink/220303/53e6f4184809d9dbe6e98062a0948a4e.png" alt="vue-pokedex" style="width:20rem" />
   </div>
-  <PokemonCardsComponent :pokemons="pokemons" />
+
+  <div class="container"> 
+    <div class="row d-flex justify-content-center">
+      <SearchBarComponent />
+    </div>
+    <div class="row d-flex justify-content-center mt-5">
+      <PokemonCardsComponent :pokemons="pokemons" />
+    </div>
+  </div>
+
   <SpinnerComponent v-if="loadingPokemon" />
+  
   <FooterComponent v-if="allPokemonsLoaded" />
+
 </template>
 
 <script lang="ts">
 
 import { defineComponent, onMounted, ref } from 'vue';
 
+import FooterComponent from '@/components/FooterComponent.vue';
 import NavbarComponent from '@/components/NavbarComponent.vue';
 import PokemonCardsComponent from '@/components/PokemonCardsComponent.vue';
+import SearchBarComponent from '@/components/SearchBarComponent.vue';
 import SpinnerComponent from '@/components/SpinnerComponent.vue';
-import FooterComponent from '@/components/FooterComponent.vue';
 
 import usePokemon from '@/hooks/usePokemon';
 
@@ -27,7 +41,8 @@ export default defineComponent({
     NavbarComponent,
     PokemonCardsComponent,
     SpinnerComponent,
-    FooterComponent
+    FooterComponent,
+    SearchBarComponent
   },
   setup() {
 

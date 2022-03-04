@@ -1,18 +1,29 @@
 <template>
-  
   <NavbarComponent title="Vue Pokedex" />
-
+  
   <div class="container mt-4 mb-5">
-    <img src="https://fontmeme.com/permalink/220303/53e6f4184809d9dbe6e98062a0948a4e.png" alt="vue-pokedex" style="width:20rem" />
+    <img
+      src="https://fontmeme.com/permalink/220303/53e6f4184809d9dbe6e98062a0948a4e.png"
+      alt="vue-pokedex"
+      style="width:20rem"
+    />
   </div>
 
   <div class="container"> 
     <div class="row d-flex justify-content-center">
-      <SearchBarComponent @searchPokemon="searchPokemon($event)" />
+      <SearchBarComponent
+        @searchPokemon="searchPokemon($event)"
+      />
     </div>
     <div class="row d-flex justify-content-center mt-5">
-      <PokemonCardsComponent v-if="searchingPokemon" :pokemons="resultPokemon" />
-      <PokemonCardsComponent v-else :pokemons="pokemons" />
+      <PokemonCardsComponent
+        v-if="searchingPokemon"
+        :pokemons="resultPokemon"
+      />
+      <PokemonCardsComponent
+        v-else
+        :pokemons="pokemons"
+      />
     </div>
   </div>
 

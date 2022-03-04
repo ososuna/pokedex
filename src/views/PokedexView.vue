@@ -35,7 +35,7 @@
   </div>
 
   <SpinnerComponent v-if="loadingPokemon" />
-  <FooterComponent v-if="allPokemonsLoaded" />
+  <FooterComponent v-if="allPokemonsLoaded||(searchingPokemon&&!loadingPokemon)" />
 
 </template>
 
@@ -86,7 +86,11 @@ export default defineComponent({
 
         const { innerHeight } = window;
 
-        if ( (scrollTop + innerHeight >= scrollHeight - 5) && !allPokemonsLoaded.value ) {
+        if (
+          scrollTop + innerHeight >= scrollHeight - 5 &&
+          !allPokemonsLoaded.value &&
+          !searchingPokemon.value
+        ) {
           loadMorePokemon();
         }
       }

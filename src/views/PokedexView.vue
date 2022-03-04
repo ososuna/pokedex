@@ -69,13 +69,16 @@ export default defineComponent({
     const resultPokemon     = ref<Pokemon[]>([]);
 
     const handleScroll = () => {
+      
       window.onscroll = async () => {
         const {
           scrollTop,
-          scrollHeight,
-          clientHeight
+          scrollHeight
         } = document.documentElement;
-        if ( (scrollTop + clientHeight >= scrollHeight - 1) && !allPokemonsLoaded.value ) {
+
+        const { innerHeight } = window;
+
+        if ( (scrollTop + innerHeight >= scrollHeight - 5) && !allPokemonsLoaded.value ) {
           loadMorePokemon();
         }
       }
@@ -114,7 +117,9 @@ export default defineComponent({
         loadingPokemon.value = false;
         
         resultPokemon.value = allPokemons.value.filter( pokemon => 
-          pokemon.name.includes( ($event.target as HTMLInputElement).value )
+          pokemon.name.includes(
+            ($event.target as HTMLInputElement).value.toLowerCase()
+          )
         );
       } else {
         searchingPokemon.value = false;

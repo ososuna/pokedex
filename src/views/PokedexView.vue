@@ -52,45 +52,43 @@ export default defineComponent({
     const allPokemonsLoaded = ref(false);
     const loadingPokemon    = ref(false);
     const searchingPokemon  = ref(false);
-    const pokemons          = ref<Pokemon[]>([]);
+
     const allPokemons       = ref<Pokemon[]>([]);
+    const pokemons          = ref<Pokemon[]>([]);
     const resultPokemon     = ref<Pokemon[]>([]);
 
-    const loadPokemons = async () => {
-      pokemons.value = await getPokemon();
-    }
-
-    const loadMorePokemon = () => {
-
+    const handleScroll = () => {
       window.onscroll = async () => {
-        
         const {
           scrollTop,
           scrollHeight,
           clientHeight
         } = document.documentElement;
-
         if ( (scrollTop + clientHeight >= scrollHeight - 1) && !allPokemonsLoaded.value ) {
-          
-          if ( !loadingPokemon.value ) {
-            
-            loadingPokemon.value = true;
-
-            const morePokemons = await getPokemon( pokemons.value.length );
-
-            pokemons.value = [
-              ...pokemons.value,
-              ...morePokemons
-            ]
-
-            if ( pokemons.value.length > 897 ) {
-              allPokemonsLoaded.value = true;
-            }
-            
-            loadingPokemon.value = false;
-          }
+          loadMorePokemon();
         }
       }
+    }
+    
+    const loadPokemons = async () => {
+      pokemons.value = await getPokemon();
+    }
+
+    const loadMorePokemon = async() => {
+
+      if ( !loadingPokemon.value ) {
+        loadingPokemon.value = true;
+        const morePokemons = await getPokemon( pokemons.value.length );
+
+        pokemons.value = [
+          ...pokemons.value,
+          ...morePokemons
+        ]
+
+        if ( pokemons.value.length > 897 ) allPokemonsLoaded.value = true;
+        loadingPokemon.value = false;
+      }
+    
     }
 
     const searchPokemon = async( $event: Event ) => {
@@ -110,14 +108,12 @@ export default defineComponent({
       } else {
         searchingPokemon.value = false;
       }
-
-      
     }
 
     onMounted(() => {
       loadPokemons();
-      loadMorePokemon();
-    })
+      handleScroll();
+    });
 
     return {
       allPokemonsLoaded,

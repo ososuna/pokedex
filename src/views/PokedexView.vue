@@ -25,10 +25,16 @@
         :pokemons="pokemons"
       />
     </div>
+    <div class="row d-flex justify-content-center mt-5">
+      <AlertComponent
+        type="light"
+        msg="no results found"
+        v-if="(resultPokemon.length===0&&searchingPokemon&&!loadingPokemon)"
+      />
+    </div>
   </div>
 
   <SpinnerComponent v-if="loadingPokemon" />
-  
   <FooterComponent v-if="allPokemonsLoaded" />
 
 </template>
@@ -46,6 +52,7 @@ import SpinnerComponent from '@/components/SpinnerComponent.vue';
 import usePokemon from '@/hooks/usePokemon';
 
 import Pokemon from '@/models/Pokemon';
+import AlertComponent from '@/components/AlertComponent.vue';
 
 export default defineComponent({
   name: 'PokedexView',  
@@ -54,7 +61,8 @@ export default defineComponent({
     PokemonCardsComponent,
     SpinnerComponent,
     FooterComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    AlertComponent
   },
   setup() {
 

@@ -1,17 +1,13 @@
-import { ref } from 'vue';
-
 import pokeApi from '@/api/pokeApi';
 import Pokemon from '../models/Pokemon';
 
 const usePokemon = () => {
-  
-  const allPokemonsLoaded = ref(false);
 
-  const getPokemon = async( offset = 0 ) => {
+  const getPokemon = async( offset = 0, limit = 120 ) => {
 
     const { data } = await pokeApi.get('', {
       params: {
-        limit: 120,
+        limit,
         offset
       }
     });
@@ -29,16 +25,11 @@ const usePokemon = () => {
       }      
     });    
 
-    if ( index > 899 ) {
-      allPokemonsLoaded.value = true;
-    }
-  
     return pokemons.filter( pokemon => pokemon.id < 899 );
 
   }
 
   return {
-    allPokemonsLoaded,
     getPokemon
   }
 

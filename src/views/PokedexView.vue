@@ -18,7 +18,7 @@
 
   <SpinnerComponent v-if="loadingPokemon" />
   
-  <FooterComponent v-if="resultPokemon" />
+  <FooterComponent v-if="allPokemonsLoaded" />
 
 </template>
 
@@ -47,11 +47,13 @@ export default defineComponent({
   },
   setup() {
 
-    const { allPokemonsLoaded, getPokemon } = usePokemon();
+    const { getPokemon } = usePokemon();
 
+    const allPokemonsLoaded = ref(false);
     const loadingPokemon    = ref(false);
     const searchingPokemon  = ref(false);
     const pokemons          = ref<Pokemon[]>([]);
+    const allPokemons       = ref<Pokemon[]>([]);
     const resultPokemon     = ref<Pokemon[]>([]);
 
     const loadPokemons = async () => {
@@ -80,18 +82,30 @@ export default defineComponent({
               ...pokemons.value,
               ...morePokemons
             ]
-            loadingPokemon.value = false;            
+
+            if ( pokemons.value.length > 897 ) {
+              allPokemonsLoaded.value = true;
+            }
+            
+            loadingPokemon.value = false;
           }
         }
       }
     }
 
-    const searchPokemon = ($event: any) => {
+    const searchPokemon = async( $event: Event ) => {
 
-      if ($event.target.value != '') {
-        searchingPokemon.value = true;        
-        resultPokemon.value = pokemons.value.filter( pokemon => 
-          pokemon.name.includes( $event.target.value )
+      if ( ($event.target as HTMLInputElement).value != '' ) {
+
+        loadingPokemon.value = true;
+        searchingPokemon.value = true;
+
+        allPokemons.value = await getPokemon(0, 900);
+
+        loadingPokemon.value = false;
+        
+        resultPokemon.value = allPokemons.value.filter( pokemon => 
+          pokemon.name.includes( ($event.target as HTMLInputElement).value )
         );
       } else {
         searchingPokemon.value = false;

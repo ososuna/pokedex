@@ -8,16 +8,17 @@
 
   <div class="container"> 
     <div class="row d-flex justify-content-center">
-      <SearchBarComponent />
+      <SearchBarComponent @searchPokemon="searchPokemon($event)" />
     </div>
     <div class="row d-flex justify-content-center mt-5">
-      <PokemonCardsComponent :pokemons="pokemons" />
+      <PokemonCardsComponent v-if="searchingPokemon" :pokemons="resultPokemon" />
+      <PokemonCardsComponent v-else :pokemons="pokemons" />
     </div>
   </div>
 
   <SpinnerComponent v-if="loadingPokemon" />
   
-  <FooterComponent v-if="allPokemonsLoaded" />
+  <FooterComponent v-if="resultPokemon" />
 
 </template>
 
@@ -48,13 +49,15 @@ export default defineComponent({
 
     const { allPokemonsLoaded, getPokemon } = usePokemon();
 
-    const loadingPokemon = ref(false);
-    const pokemons = ref<Pokemon[]>([]);
+    const loadingPokemon    = ref(false);
+    const searchingPokemon  = ref(false);
+    const pokemons          = ref<Pokemon[]>([]);
+    const resultPokemon     = ref<Pokemon[]>([]);
 
     const loadPokemons = async () => {
       pokemons.value = await getPokemon();
     }
-    
+
     const loadMorePokemon = () => {
 
       window.onscroll = async () => {
@@ -83,6 +86,20 @@ export default defineComponent({
       }
     }
 
+    const searchPokemon = ($event: any) => {
+
+      if ($event.target.value != '') {
+        searchingPokemon.value = true;        
+        resultPokemon.value = pokemons.value.filter( pokemon => 
+          pokemon.name.includes( $event.target.value )
+        );
+      } else {
+        searchingPokemon.value = false;
+      }
+
+      
+    }
+
     onMounted(() => {
       loadPokemons();
       loadMorePokemon();
@@ -91,7 +108,10 @@ export default defineComponent({
     return {
       allPokemonsLoaded,
       loadingPokemon,
-      pokemons
+      pokemons,
+      resultPokemon,
+      searchingPokemon,
+      searchPokemon
     }
 
   }

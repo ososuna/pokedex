@@ -1,5 +1,7 @@
 <template>
-  <div class="d-flex justify-content-center col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 mb-3">
+  <div
+    class="d-flex justify-content-center col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 mb-3"
+  >
     <div class="card" style="width:8rem;">
       <img
         :src="img"

@@ -10,7 +10,7 @@ const routes: Array<RouteRecordRaw> = [
     component: PokedexView
   },
   {
-    path: '/info',
+    path: '/:id',
     name: 'PokemonInfoView',
     component: PokemonInfoView
   }

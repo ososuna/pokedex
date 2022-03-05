@@ -1,5 +1,5 @@
 <template>
-  <NavbarComponent title="Vue Pokedex" />
+  <NavbarComponent />
   
   <div class="container mt-4 mb-5">
     <img
@@ -43,6 +43,7 @@
 
 import { defineComponent, onMounted, ref } from 'vue';
 
+import AlertComponent from '@/components/AlertComponent.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 import NavbarComponent from '@/components/NavbarComponent.vue';
 import PokemonCardsComponent from '@/components/PokemonCardsComponent.vue';
@@ -52,7 +53,6 @@ import SpinnerComponent from '@/components/SpinnerComponent.vue';
 import usePokemon from '@/hooks/usePokemon';
 
 import Pokemon from '@/models/Pokemon';
-import AlertComponent from '@/components/AlertComponent.vue';
 
 export default defineComponent({
   name: 'PokedexView',  

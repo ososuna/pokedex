@@ -9,7 +9,7 @@
     />
   </div>
 
-  <div class="container"> 
+  <div class="container d-flex flex-column min-vh-100"> 
     <div class="row d-flex justify-content-center">
       <SearchBarComponent
         @searchPokemon="searchPokemon($event)"

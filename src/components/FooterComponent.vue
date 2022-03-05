@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-primary text-center text-white mt-5">
+  <footer class="bg-primary text-center text-white mt-auto">
     <div class="container p-4">
       <section class="mb-4">
         <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/ososuna/pokedex.git" target="_blank" role="button">

@@ -37,7 +37,10 @@
   </div>
   <div class="col-4 d-flex align-items-center">
     <div class="card-body text-start">
-      <p class="card-text">types  <span class="badge rounded-pill bg-primary">psychic</span></p>
+      <p class="card-text">
+        types
+        <span v-for="type in types" :key="type" class="badge rounded-pill bg-primary" style="margin-right:5px">{{ type }}</span>
+      </p>
       <p class="card-text">height <strong>{{ pokemon.height }}</strong></p>
       <p class="card-text">weight <strong>{{ pokemon.weight }}</strong></p>
       <p class="card-text">base experience <strong>{{ pokemon.base_experience }}</strong></p>
@@ -47,7 +50,7 @@
 
 <script lang="ts">
 
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType, ref } from 'vue';
 
 import { PokemonInfo } from '@/models/PokemonInfo';
 
@@ -57,7 +60,19 @@ export default defineComponent({
     pokemon: Object as PropType<PokemonInfo>
   },
   setup(props) {
-    console.log(props.pokemon?.name); 
+    
+    const types = ref([] as string[]);
+
+    const getTypes = () => {
+      types.value = props.pokemon?.types.map( type => type.type.name ) || [];
+    }
+    
+    getTypes();
+    
+    return {
+      types
+    }
+
   }
 });
 </script>

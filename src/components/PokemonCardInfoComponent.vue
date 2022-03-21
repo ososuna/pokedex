@@ -9,9 +9,16 @@
       :alt="pokemon.name"
       :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ pokemon.id }.png`"
     >
-    <div v-for="stat in stats" :key="stat.name" class="d-flex justify-content-center mt-4">
-      <div class="progress w-50">
-        <div class="progress-bar w-75" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">{{ stat.name }} - {{ stat.baseStat }}</div>
+    <div v-for="stat in stats" :key="stat.name">
+      <div class="d-flex justify-content-center mt-2">
+        <div class="progress w-50">
+          <div class="progress-bar" :style="`width:${ stat.baseStat*100/185 }%`" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+            {{ stat.baseStat }}
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <small style="font-size:.8rem">{{ stat.name }}</small>
       </div>
     </div>
   </div>
@@ -53,7 +60,7 @@ export default defineComponent({
       
       stats.value = props.pokemon?.stats.map( stats => {
         return {
-          name: stats.stat.name,
+          name: stats.stat.name.replace('-', ' '),
           baseStat: stats.base_stat
         }
       }) || [];

@@ -1,7 +1,7 @@
 <template>
   <NavbarComponent />
   <div class="container card d-flex flex-column mt-5 mb-5" style="width:80%"> 
-    <div class="row d-flex justify-content-center g-0 mb-5">
+    <div class="row d-flex justify-content-center g-0 mb-5 animate__animated animate__fadeIn">
       <PokemonInfo v-if="Object.keys(pokemon).length !== 0" :pokemon="pokemon" />
       <SpinnerComponent v-else />
     </div>
@@ -12,8 +12,9 @@
 <script lang="ts">
 
 import { defineComponent, ref } from 'vue';
-
 import { useRoute } from 'vue-router';
+
+import 'animate.css';
 
 import pokeApi from '@/api/pokeApi';
 

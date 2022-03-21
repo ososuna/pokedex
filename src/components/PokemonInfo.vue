@@ -38,7 +38,6 @@
 <script lang="ts">
 
 import { defineComponent, PropType, ref } from 'vue';
-
 import { PokemonInfo } from '@/models/PokemonInfo';
 
 export default defineComponent({

@@ -2,17 +2,17 @@
   <h5 class="card-title mt-4">{{ pokemon.name }}
     <span class="badge bg-primary">{{ pokemon.id }}</span>
   </h5>
-  <div class="col-8 mt-4">
+  <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 mt-4">
     <img
       class="img-fluid rounded-start mt-4"
-      style="width:40%"
+      style="width:40%;"
       :alt="pokemon.name"
       :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ pokemon.id }.png`"
     >
     <div v-for="stat in stats" :key="stat.name">
       <div class="d-flex justify-content-center mt-2">
         <div class="progress w-50">
-          <div class="progress-bar" :style="`width:${ stat.baseStat*100/185 }%`" role="progressbar" :aria-valuenow="stat.baseStat" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar" :style="`width:${ stat.baseStat*100/185 }%;`" role="progressbar" :aria-valuenow="stat.baseStat" aria-valuemin="0" aria-valuemax="100">
             {{ stat.baseStat }}
           </div>
         </div>
@@ -22,8 +22,8 @@
       </div>
     </div>
   </div>
-  <div class="col-4 d-flex align-items-center">
-    <div class="card-body text-start">
+  <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 d-flex align-items-center mt-3">
+    <div class="card-body text-md-start text-lg-start text-xl-start">
       <p class="card-text">
         types
         <span v-for="type in types" :key="type" class="badge rounded-pill bg-primary" style="margin-right:5px">{{ type }}</span>

@@ -21,7 +21,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'PokemonCardComponent',
+  name: 'PokemonCard',
   props: {
     name: String,
     img: String

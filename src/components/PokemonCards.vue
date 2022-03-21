@@ -1,5 +1,5 @@
 <template>      
-  <PokemonCardComponent
+  <PokemonCard
     v-for="pokemon in pokemons"
     :key="pokemon.name"
     :name="pokemon.name"
@@ -13,15 +13,15 @@
 import { defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
 
-import PokemonCardComponent from '@/components/PokemonCardComponent.vue';
+import PokemonCard from '@/components/PokemonCard.vue';
 
 export default defineComponent({
-  name: 'PokemonCardsComponent',
+  name: 'PokemonCards',
   props: {
     pokemons: Array
   },
   components: {
-    PokemonCardComponent
+    PokemonCard
   },
   setup() {
 

@@ -16,11 +16,11 @@
       />
     </div>
     <div class="row d-flex justify-content-center mt-5">
-      <PokemonCardsComponent
+      <PokemonCards
         v-if="searchingPokemon"
         :pokemons="resultPokemon"
       />
-      <PokemonCardsComponent
+      <PokemonCards
         v-else
         :pokemons="pokemons"
       />
@@ -46,7 +46,7 @@ import { defineComponent, onMounted, ref } from 'vue';
 import AlertComponent from '@/components/AlertComponent.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 import NavbarComponent from '@/components/NavbarComponent.vue';
-import PokemonCardsComponent from '@/components/PokemonCardsComponent.vue';
+import PokemonCards from '@/components/PokemonCards.vue';
 import SearchBarComponent from '@/components/SearchBarComponent.vue';
 import SpinnerComponent from '@/components/SpinnerComponent.vue';
 
@@ -58,7 +58,7 @@ export default defineComponent({
   name: 'PokedexView',  
   components: {
     NavbarComponent,
-    PokemonCardsComponent,
+    PokemonCards,
     SpinnerComponent,
     FooterComponent,
     SearchBarComponent,

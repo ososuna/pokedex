@@ -42,7 +42,7 @@ import { defineComponent, PropType, ref } from 'vue';
 import { PokemonInfo } from '@/models/PokemonInfo';
 
 export default defineComponent({
-  name: 'PokemonCardInfoComponent',
+  name: 'PokemonInfo',
   props: {
     pokemon: Object as PropType<PokemonInfo>
   },

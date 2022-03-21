@@ -3,7 +3,7 @@
 ## catch em all!
 
 <img width="250" src="https://data.whicdn.com/images/227524392/original.gif"/>
-<a href="https://ososuna.github.io/currency-converter/" target="_blank">vue pokedex</a>
+<a href="http://vue-pokedex.s3-website-us-east-1.amazonaws.com/#/" target="__blank">vue pokedex</a>
 
 ## Project setup
 ```

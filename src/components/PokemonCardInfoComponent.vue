@@ -12,7 +12,7 @@
     <div v-for="stat in stats" :key="stat.name">
       <div class="d-flex justify-content-center mt-2">
         <div class="progress w-50">
-          <div class="progress-bar" :style="`width:${ stat.baseStat*100/185 }%`" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar" :style="`width:${ stat.baseStat*100/185 }%`" role="progressbar" :aria-valuenow="stat.baseStat" aria-valuemin="0" aria-valuemax="100">
             {{ stat.baseStat }}
           </div>
         </div>
@@ -49,7 +49,6 @@ export default defineComponent({
   setup(props) {
     
     const types = ref([] as string[]);
-    
     const stats = ref([] as { name: string, baseStat: number }[]);
 
     const getTypes = () => {
@@ -70,7 +69,7 @@ export default defineComponent({
     getTypes();
 
     getStats();
-    
+
     return {
       types,
       stats

@@ -9,29 +9,9 @@
       :alt="pokemon.name"
       :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ pokemon.id }.png`"
     >
-    <div class="d-flex justify-content-center mt-4">
+    <div v-for="stat in stats" :key="stat.name" class="d-flex justify-content-center mt-4">
       <div class="progress w-50">
-        <div class="progress-bar w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">hp - 106</div>
-      </div>
-    </div>
-    <div class="d-flex justify-content-center mt-4">
-      <div class="progress w-50">
-        <div class="progress-bar w-75" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">attack - 110</div>
-      </div>
-    </div>
-    <div class="d-flex justify-content-center mt-4">
-      <div class="progress w-50">
-        <div class="progress-bar w-100" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">defense - 90</div>
-      </div>
-    </div>
-    <div class="d-flex justify-content-center mt-4">
-      <div class="progress w-50">
-        <div class="progress-bar w-25" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">special attack - 154</div>
-      </div>
-    </div>
-    <div class="d-flex justify-content-center mt-4">
-      <div class="progress w-50">
-        <div class="progress-bar w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">speed - 130</div>
+        <div class="progress-bar w-75" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">{{ stat.name }} - {{ stat.baseStat }}</div>
       </div>
     </div>
   </div>
@@ -62,15 +42,31 @@ export default defineComponent({
   setup(props) {
     
     const types = ref([] as string[]);
+    
+    const stats = ref([] as { name: string, baseStat: number }[]);
 
     const getTypes = () => {
       types.value = props.pokemon?.types.map( type => type.type.name ) || [];
     }
+
+    const getStats = () => {
+      
+      stats.value = props.pokemon?.stats.map( stats => {
+        return {
+          name: stats.stat.name,
+          baseStat: stats.base_stat
+        }
+      }) || [];
+      
+    }
     
     getTypes();
+
+    getStats();
     
     return {
-      types
+      types,
+      stats
     }
 
   }

@@ -2,8 +2,8 @@
 
 ## catch em all!
 
-<img width="250" src="https://data.whicdn.com/images/227524392/original.gif"/>
-<a href="http://vue-pokedex.s3-website-us-east-1.amazonaws.com/#/" target="_blank">vue pokedex</a>
+<img width="250" src="https://media.giphy.com/media/7L9FYvnh467YI/giphy.gif"/>
+<a href="https://pokedex-umber-pi.vercel.app/" target="_blank">vue pokedex</a>
 
 ## Project setup
 ```
